@@ -7,7 +7,7 @@ public class City extends GameObject {
 		super(gfx, phy, gEngine);
 		this.isTarget = true;
 	}
-
+	//adjust hitbox
 	public City(int num, Vec2d loc, GameEngine gEngine) {
 		super(new GfxCircle(0.4), 
 				new PhyBox(new Vec2d(0.0, 0.0), loc, 0.0, 00000001.0),
