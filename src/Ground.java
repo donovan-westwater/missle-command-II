@@ -1,3 +1,4 @@
+
 public class Ground extends GameObject {
 	public Ground(Vec2d loc, GameEngine gEngine, double xwidth, double maxh) {
 		super(new GfxGround(xwidth, maxh), 

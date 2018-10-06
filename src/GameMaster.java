@@ -5,6 +5,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.Font;
 
 public class GameMaster {
+	private Vec2d[] targets = new Vec2d[9];
 	private GfxUI screen;
 	private GfxUI replaytext;
 	private GfxUI scoretext;
@@ -19,6 +20,14 @@ public class GameMaster {
 	private ArrayList<GameObject> phase2;
 	private ArrayList<GameObject> phase3;
 	private ArrayList<GameObject> cities;
+	
+	//Trying to get phy location, so moving towns up here
+	private City town1;
+	private City town2;
+	private City town3;
+	private City town5;
+	private City town6;
+	private City town7;
 	
 	public GameMaster(GameEngine tim){
 		screen = new GfxUI(new Vec2d(0,0));
@@ -44,11 +53,20 @@ public class GameMaster {
 			}
 		}
 		if (phase == 1) {
-			screen.setMsg("MISSLE COMMAND!: PRESS 'ESCAPE' TO START!");
+			screen.setMsg("MISSLE COMMAND 2!: PRESS 'ESCAPE' TO START!");
 		}
 		if (phase == 2) {
 			StdDraw.setFont();
 			scoretext.setMsg("SCORE: " + score);
+		/*	
+			targets[1] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town1)).getPhysicsPos();
+			targets[2] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town2)).getPhysicsPos();
+			targets[3] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town3)).getPhysicsPos();
+			targets[5] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town5)).getPhysicsPos();
+			targets[6] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town6)).getPhysicsPos();
+			targets[7] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town7)).getPhysicsPos();
+			*/	
+			
 		}
 		if (!anyCitiesLeft && phase == 2) {
 			this.startPhase3();
@@ -59,6 +77,7 @@ public class GameMaster {
 				replaytext.setMsg("");
 				startPhase2();
 			}
+			
 		}
 	}
 	private void startPhase1(){
@@ -79,7 +98,7 @@ public class GameMaster {
 		Player hansolo = new Player(eng);
 		eng.setPlayer(hansolo);
 
-		Vec2d[] targets = new Vec2d[9];
+		
 		AlienInvader invader = new AlienInvader(targets, eng);
 		eng.setInvader(invader);
 		double gutter = 1.0;
@@ -87,13 +106,19 @@ public class GameMaster {
 		double targetWidth = maxWidth - gutter;
 		double defaultY = -4.0;
 		System.out.println("Gutter: " + gutter + " and targetWidth " + targetWidth );
-
 		for (int i = 0; i < targets.length; i++) {
 			targets[i] = new Vec2d(minX + gutter/2 + targetWidth * i / (targets.length-1), defaultY);
 		}
-		Ground ground = new Ground(new Vec2d(0.0, minY), eng, maxWidth, 4.0);
+/*
+		for (int i = 0; i < targets.length; i++) {
+			targets[i] = new Vec2d(minX + gutter/2 + targetWidth * i / (targets.length-1), defaultY);
+		}
+		*/
+		targets[4] = new Vec2d(-0.75,4);
+		
+		//Ground ground = new Ground(new Vec2d(0.0, minY), eng, maxWidth, 4.0);
 		// first object into system draws first
-		eng.add(ground);
+		//eng.add(ground);
 
 
 		PhyBox b1 = new PhyBox(new Vec2d(0.0, 0.0), targets[0], 0.5, 10000000.0);
@@ -116,6 +141,7 @@ public class GameMaster {
 		City town5 = new City(5,targets[5], eng);
 		City town6 = new City(6,targets[6], eng);
 		City town7 = new City(7,targets[7], eng);
+	
 
 		eng.add(town1);
 		eng.add(town2);
@@ -123,6 +149,7 @@ public class GameMaster {
 		eng.add(town5);
 		eng.add(town6);
 		eng.add(town7);
+
 
 	}
 	private void startPhase3(){

@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.StdDraw;
+
 public class City extends GameObject {
 	private int health;
 	public City (GfxObject gfx, PhyObject phy, GameEngine gEngine) {
@@ -5,13 +7,15 @@ public class City extends GameObject {
 	}
 
 	public City(int num, Vec2d loc, GameEngine gEngine) {
-		super(new GfxCity(0.4, num), 
+		super(new GfxCircle(0.4), 
 				new PhyBox(new Vec2d(0.0, 0.0), loc, 0.0, 100000000000.0),
 				gEngine);
+		((GfxCircle) this.getGfxObj()).setColor(StdDraw.BLUE);
 		health = 50;
 	}
 
-	public void update(){	
+	public void update(){
+		this.getpObj().setDir(this.getgEng().getGravity());
 		if(health == 0){
 			this.getgEng().removeDuringFrame(this);
 		}

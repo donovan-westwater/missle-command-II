@@ -4,6 +4,7 @@ public class Player {
 	private GameEngine gEng;
 	private int launchPause = 5;
 	private int missileCount = 3;
+	//private int gravity = -1;
 	private boolean active;
 	
 	private Command_Center[] centers = new Command_Center[3];
@@ -56,6 +57,10 @@ public class Player {
 				centers[2].fireMissile(target);
 				System.out.println("Firing right");			
 				launchPause = 5;
+			}
+			if(StdDraw.isKeyPressed(32)) {
+				Vec2d current = this.gEng.getGravity();
+				this.gEng.setGravity(new Vec2d(0,current.getX()*-1));
 			}
 			if (launchPause > 5) launchPause = 5;
 
