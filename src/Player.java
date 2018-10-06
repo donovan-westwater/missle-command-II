@@ -60,7 +60,7 @@ public class Player {
 			}
 			if(StdDraw.isKeyPressed(32)) {
 				Vec2d current = this.gEng.getGravity();
-				this.gEng.setGravity(new Vec2d(0,current.getX()*-1));
+				this.gEng.setGravity(new Vec2d(0,current.getY()*-1));
 			}
 			if (launchPause > 5) launchPause = 5;
 

@@ -11,6 +11,7 @@ public class Command_Center extends GameObject {
 	private int maxMissiles = 10;
 	private double missileSpeed = 0.2;
 	private GfxCommand commandBase;
+	private boolean isTarget;
 	GfxUI missileCount;
 	
 	public Command_Center(Vec2d loc,GameEngine g){
@@ -24,6 +25,10 @@ public class Command_Center extends GameObject {
 		missileCount = new GfxUI(new Vec2d(loc));
 		updateGfxMissiles(maxMissiles);
 		this.getgEng().addUI(missileCount);
+		isTarget = true;
+	}
+	public boolean getTarget() {
+		return isTarget;
 	}
 	private void updateGfxMissiles(int count) {
 		commandBase.setAmmoCount(maxMissiles);
