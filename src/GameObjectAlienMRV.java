@@ -4,7 +4,9 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class GameObjectAlienMRV extends GameObject {
 	private int frameLife;
-	private double xMin = -5.0, xMax = 5.0;
+	private double xMin = -5.0; 
+	private double xMax = 5.0;
+	private double yMin = -5.0;
 	private double yMax = 5.0;
 	private Vec2d[] targets;
 	private int maxSpawns = 8;
@@ -18,6 +20,7 @@ public class GameObjectAlienMRV extends GameObject {
 		this.xMin = xMin;
 		this.xMax = xMax;
 		this.yMax = yMax;
+		this.yMin = -yMax;
 		this.frameLife = 0;
 		trail = new ArrayList<GameObjectSmokeTrail>();
 		initialize();
@@ -33,10 +36,17 @@ public class GameObjectAlienMRV extends GameObject {
 		initialize();
 	}
 	private void initialize() {
-		double xScale = Math.random();
-		double xrange = Math.abs(xMax - xMin);
-		double xLoc = xMin + xrange * xScale;
-		Vec2d startLocation = new Vec2d(xLoc, yMax - 0.25);
+		double yScale = Math.random();
+		double yrange = Math.abs(yMax - yMin);
+		double xLoc;
+		if(Math.random() > 0.5) {
+			xLoc = xMax - 1;
+		}else {
+			xLoc = xMin + 1;
+		}
+		//double yLoc = yMin + yrange * yScale;
+		double yLoc = 0;
+		Vec2d startLocation = new Vec2d(xLoc, yLoc);
 		this.getpObj().setLoc(startLocation);
 		Vec2d direction = Vec2d.subtract(this.myTarget, startLocation);
 		direction = Vec2d.getUnitVec(direction);
@@ -71,4 +81,5 @@ public class GameObjectAlienMRV extends GameObject {
 		}
 		frameLife = frameLife + 1;
 	}
+	
 }

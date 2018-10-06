@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.Font;
 
 public class GameMaster {
+	private Vec2d[] targets = new Vec2d[9];
+	private int grav = 1;
 	private GfxUI screen;
 	private GfxUI replaytext;
 	private GfxUI scoretext;
@@ -19,6 +21,14 @@ public class GameMaster {
 	private ArrayList<GameObject> phase2;
 	private ArrayList<GameObject> phase3;
 	private ArrayList<GameObject> cities;
+	
+	//Trying to get phy location, so moving towns up here
+	private City town1;
+	private City town2;
+	private City town3;
+	private City town5;
+	private City town6;
+	private City town7;
 	
 	public GameMaster(GameEngine tim){
 		screen = new GfxUI(new Vec2d(0,0));
@@ -43,12 +53,34 @@ public class GameMaster {
 				break;
 			}
 		}
+		if(eng.getGravity().getY() > 0) {
+			grav = 1;
+		}else {
+			grav = -1;
+		}
 		if (phase == 1) {
-			screen.setMsg("MISSLE COMMAND!: PRESS 'ESCAPE' TO START!");
+			screen.setMsg("MISSLE COMMAND 2!: PRESS 'ESCAPE' TO START!");
 		}
 		if (phase == 2) {
 			StdDraw.setFont();
 			scoretext.setMsg("SCORE: " + score);
+			
+			targets[1] = new Vec2d(targets[1].getX(),targets[1].getY()*grav);
+			targets[2] = new Vec2d(targets[1].getX(),targets[2].getY()*grav);
+			targets[3] = new Vec2d(targets[1].getX(),targets[3].getY()*grav);
+			targets[5] = new Vec2d(targets[1].getX(),targets[5].getY()*grav);
+			targets[6] = new Vec2d(targets[1].getX(),targets[6].getY()*grav);;
+			targets[7] = new Vec2d(targets[1].getX(),targets[7].getY()*grav);;
+			//crashes get when hit as it calls objects that arent in array!!!
+			/*
+			targets[1] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town1)).getpObj().getLoc();
+			targets[2] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town2)).getpObj().getLoc();
+			targets[3] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town3)).getpObj().getLoc();
+			targets[5] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town5)).getpObj().getLoc();
+			targets[6] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town6)).getpObj().getLoc();
+			targets[7] = this.eng.getgObjs().get(eng.getgObjs().indexOf(town7)).getpObj().getLoc();
+			*/
+			
 		}
 		if (!anyCitiesLeft && phase == 2) {
 			this.startPhase3();
@@ -59,6 +91,7 @@ public class GameMaster {
 				replaytext.setMsg("");
 				startPhase2();
 			}
+			
 		}
 	}
 	private void startPhase1(){
@@ -79,7 +112,7 @@ public class GameMaster {
 		Player hansolo = new Player(eng);
 		eng.setPlayer(hansolo);
 
-		Vec2d[] targets = new Vec2d[9];
+		
 		AlienInvader invader = new AlienInvader(targets, eng);
 		eng.setInvader(invader);
 		double gutter = 1.0;
@@ -87,13 +120,23 @@ public class GameMaster {
 		double targetWidth = maxWidth - gutter;
 		double defaultY = -4.0;
 		System.out.println("Gutter: " + gutter + " and targetWidth " + targetWidth );
-
 		for (int i = 0; i < targets.length; i++) {
 			targets[i] = new Vec2d(minX + gutter/2 + targetWidth * i / (targets.length-1), defaultY);
 		}
-		Ground ground = new Ground(new Vec2d(0.0, minY), eng, maxWidth, 4.0);
+/*
+		for (int i = 0; i < targets.length; i++) {
+			targets[i] = new Vec2d(minX + gutter/2 + targetWidth * i / (targets.length-1), defaultY);
+		}
+		*/
+		targets[4] = new Vec2d(0,4);
+		
+		Top ceiling = new Top(new Vec2d(0,9.9),eng,10);
+		eng.add(ceiling);
+		Top floor = new Top(new Vec2d(0,-9.9),eng,10);
+		eng.add(floor);
+		//Ground ground = new Ground(new Vec2d(0.0, minY), eng, maxWidth, 4.0);
 		// first object into system draws first
-		eng.add(ground);
+		//eng.add(ground);
 
 
 		PhyBox b1 = new PhyBox(new Vec2d(0.0, 0.0), targets[0], 0.5, 10000000.0);
@@ -110,12 +153,13 @@ public class GameMaster {
 		hansolo.setCCCenter(base2);
 		hansolo.setCCRight(base3);
 
-		City town1 = new City(1,targets[1], eng);
-		City town2 = new City(2,targets[2], eng);
-		City town3 = new City(3,targets[3], eng);
-		City town5 = new City(5,targets[5], eng);
-		City town6 = new City(6,targets[6], eng);
-		City town7 = new City(7,targets[7], eng);
+		 town1 = new City(1,targets[1], eng);
+		 town2 = new City(2,targets[2], eng);
+		 town3 = new City(3,targets[3], eng);
+		 town5 = new City(5,targets[5], eng);
+		 town6 = new City(6,targets[6], eng);
+		 town7 = new City(7,targets[7], eng);
+	
 
 		eng.add(town1);
 		eng.add(town2);
@@ -123,6 +167,7 @@ public class GameMaster {
 		eng.add(town5);
 		eng.add(town6);
 		eng.add(town7);
+
 
 	}
 	private void startPhase3(){

@@ -21,7 +21,8 @@ public class MissileCommandGame {
 	}
 	private void initialize() {
 		GameMaster joke = new GameMaster(gEngine);
-		
+
+		/*
 		PhyBox topwall = new PhyBox(new Vec2d(0.0, 0.0), new Vec2d(0.0, 9.9), 10.0, 100000000.0);
 		PhyBox bottomwall = new PhyBox(new Vec2d(0.0, 0.0), new Vec2d(0.0, -9.9), 10.0, 100000000.0);
 		PhyBox rightwall = new PhyBox(new Vec2d(0.0, 0.0), new Vec2d(9.9, 0.0), 10.0, 100000000.0);
@@ -34,10 +35,12 @@ public class MissileCommandGame {
 		GameObjectWall bottomwallObj = new GameObjectWall(gBoxbottom, bottomwall, gEngine);
 		GameObjectWall rightwallObj = new GameObjectWall(gBoxright, rightwall, gEngine);
 		GameObjectWall leftwallObj = new GameObjectWall(gBoxleft, leftwall, gEngine);
+		
 		gEngine.add(topwallObj);
 		gEngine.add(bottomwallObj);
 		gEngine.add(rightwallObj);
 		gEngine.add(leftwallObj);
+		*/
 		
 	}
 

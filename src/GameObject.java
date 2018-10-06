@@ -5,6 +5,7 @@ abstract class GameObject {
 	private boolean active;
 	private GameEvent flag;
 	private GfxObject gfxObj;
+	private Object lastHit;
 	double frameTime; 
 
 	public boolean isActive() {
@@ -52,6 +53,12 @@ abstract class GameObject {
 		this.active = false;
 		this.gEng = gEng;
 		gEvents = new ArrayList<GameEvent>();
+	}
+	public void setLast(Object x) {
+		lastHit = x;
+	}
+	public Object getlastHit() {
+		return lastHit;
 	}
 	public void update() {
 		this.frameTime = frameTime + 1;
