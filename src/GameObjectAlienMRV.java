@@ -36,7 +36,7 @@ public class GameObjectAlienMRV extends GameObject {
 		double xScale = Math.random();
 		double xrange = Math.abs(xMax - xMin);
 		double xLoc = xMin + xrange * xScale;
-		Vec2d startLocation = new Vec2d(xLoc, yMax - 0.25);
+		Vec2d startLocation = new Vec2d(xLoc, yMax - 2.5);
 		this.getpObj().setLoc(startLocation);
 		Vec2d direction = Vec2d.subtract(this.myTarget, startLocation);
 		direction = Vec2d.getUnitVec(direction);
@@ -71,4 +71,5 @@ public class GameObjectAlienMRV extends GameObject {
 		}
 		frameLife = frameLife + 1;
 	}
+	
 }

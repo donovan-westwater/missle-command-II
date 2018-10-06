@@ -61,6 +61,7 @@ public class Player {
 			if(StdDraw.isKeyPressed(32)) {
 				Vec2d current = this.gEng.getGravity();
 				this.gEng.setGravity(new Vec2d(0,current.getY()*-1));
+				launchPause = 5;
 			}
 			if (launchPause > 5) launchPause = 5;
 
