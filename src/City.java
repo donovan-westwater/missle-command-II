@@ -10,7 +10,7 @@ public class City extends GameObject {
 
 	public City(int num, Vec2d loc, GameEngine gEngine) {
 		super(new GfxCircle(0.4), 
-				new PhyBox(new Vec2d(0.0, 0.0), loc, 0.0, 100000000000.0),
+				new PhyBox(new Vec2d(0.0, 0.0), loc, 0.0, 00000001.0),
 				gEngine);
 		((GfxCircle) this.getGfxObj()).setColor(StdDraw.BLUE);
 		health = 50;
@@ -28,8 +28,10 @@ public class City extends GameObject {
 		if (gEvents == null) return;
 		for (GameEvent ge : gEvents) {
 			if (ge.getFlag() == GameEvent.GameEventFlag.TOUCH) {
-				System.out.println("Base has taken some damage!");
-				health -= 1;
+				if(this.getlastHit() instanceof GameObjectAlienMRV) {
+					System.out.println("Base has taken some damage!");
+					health -= 1;
+				}
 			}
 		}
 	}

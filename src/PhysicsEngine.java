@@ -44,6 +44,8 @@ public class PhysicsEngine {
 					// System.out.println("Checking for collison.");
 					PhysicsEvent collison = PhyObject.collide(obj, otherObj);
 					if (collison != null && collison.getFlag() == PhysicsEvent.EventFlag.TOUCH) {
+						obj.getgObj().setLast(otherObj.getgObj());
+						otherObj.gObj.setLast(obj.getgObj());
 						processCollison(collison);	
 					}
 				}
