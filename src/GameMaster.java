@@ -128,7 +128,7 @@ public class GameMaster {
 			targets[i] = new Vec2d(minX + gutter/2 + targetWidth * i / (targets.length-1), defaultY);
 		}
 		*/
-		targets[4] = new Vec2d(-0.75,4);
+		targets[4] = new Vec2d(0,4);
 		
 		//Ground ground = new Ground(new Vec2d(0.0, minY), eng, maxWidth, 4.0);
 		// first object into system draws first
