@@ -77,11 +77,16 @@ public class GameObjectAlienRocket extends GameObject {
 					*/
 				}
 			if(ge.getFlag() == GameEvent.GameEventFlag.TOUCH) {
-				this.remove();
-				this.getgEng().removeDuringFrame(this);
-				Boom ball = new Boom(this.getPhysicsPos(), new GfxCircle(0.5), this.getgEng(), 0.5);
-				this.getgEng().addDuringFrame(ball);
-				System.out.println("Hey, I went boom!");
+				if(this.getlastHit() instanceof GameObjectAlienRocket) {
+					this.getpObj().setNonsolid(true);
+					timer += 2;
+				}else {
+					this.remove();
+					this.getgEng().removeDuringFrame(this);
+					Boom ball = new Boom(this.getPhysicsPos(), new GfxCircle(0.5), this.getgEng(), 0.5);
+					this.getgEng().addDuringFrame(ball);
+					System.out.println("Hey, I went boom!");
+				}
 			}
 				
 		        // play using standard audio
