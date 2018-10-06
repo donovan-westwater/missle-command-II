@@ -10,7 +10,7 @@ public class City extends GameObject {
 	//adjust hitbox
 	public City(int num, Vec2d loc, GameEngine gEngine) {
 		super(new GfxCircle(0.4), 
-				new PhyBox(new Vec2d(0.0, 0.0), loc, 0.0, 00000001.0),
+				new PhyBox(new Vec2d(0.0, 0.0), loc, 0.4, 00000001.0),
 				gEngine);
 		((GfxCircle) this.getGfxObj()).setColor(StdDraw.BLUE);
 		health = 50;

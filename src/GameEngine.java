@@ -10,7 +10,7 @@ public class GameEngine {
 	private Player player;
 	private AlienInvader invader;
 	private GameMaster game;
-	private Vec2d gravity = new Vec2d(0,0.1);
+	private Vec2d gravity = new Vec2d(0,0.01);
 
 	// the individual gfx object and phy objects are stored inside the gameobjects
 	private ArrayList<GameObject> gObjs;
