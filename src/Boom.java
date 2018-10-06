@@ -32,9 +32,9 @@ public class Boom extends GameObject{
 				if (!(x.getgObj() instanceof Boom ||
 						x.getgObj() instanceof GameObjectSmokeTrail ||
 						x.getgObj() instanceof Command_Center)) {
-					if (x.getgObj() instanceof GameObjectAlienMRV && x.gObj.getlastHit() instanceof Boom)
+					if (x.getgObj() instanceof GameObjectAlienMRV)
 						gE.getGameMaster().addScore(250);
-					if (x.getgObj() instanceof GameObjectAlienRocket && x.gObj.getlastHit() instanceof Boom)
+					if (x.getgObj() instanceof GameObjectAlienRocket)
 						gE.getGameMaster().addScore(50);
 					gE.removeDuringFrame(x.getgObj());
 					gE.addDuringFrame(new Boom(x.getLoc(), g, gE, intialr));

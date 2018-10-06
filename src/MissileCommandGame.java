@@ -21,6 +21,7 @@ public class MissileCommandGame {
 	}
 	private void initialize() {
 		GameMaster joke = new GameMaster(gEngine);
+
 		/*
 		PhyBox topwall = new PhyBox(new Vec2d(0.0, 0.0), new Vec2d(0.0, 9.9), 10.0, 100000000.0);
 		PhyBox bottomwall = new PhyBox(new Vec2d(0.0, 0.0), new Vec2d(0.0, -9.9), 10.0, 100000000.0);

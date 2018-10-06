@@ -130,6 +130,10 @@ public class GameMaster {
 		*/
 		targets[4] = new Vec2d(0,4);
 		
+		Top ceiling = new Top(new Vec2d(0,9.9),eng,10);
+		eng.add(ceiling);
+		Top floor = new Top(new Vec2d(0,-9.9),eng,10);
+		eng.add(floor);
 		//Ground ground = new Ground(new Vec2d(0.0, minY), eng, maxWidth, 4.0);
 		// first object into system draws first
 		//eng.add(ground);
